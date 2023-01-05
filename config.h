@@ -9,12 +9,13 @@
 #define ModSh(K) (MODKEY|ShiftMask), XK_##K
 #define ModShCtrl(K) (MODKEY|ShiftMask|ControlMask), XK_##K
 /* #define POPTERM(cmd) SHCMD("st -n popterm -g 80x12 -e " cmd) */
-#define POPTERM(cmd) SHCMD("kitty --name popterm"\
-  "-o initial_window_width=80c -o initial_window_height=10c " cmd)
-#define POPTERM(cmd) SHCMD("alacritty --class Alacritty,popterm " \
-  "--option window.dimensions.columns=120 " \
-  "--option window.dimensions.lines=10 " \
-  "--command " cmd)
+#define POPTERM(cmd) SHCMD("kitty --name popterm "\
+  "-o initial_window_width=150c "\
+  "-o initial_window_height=10c " cmd)
+/* #define POPTERM(cmd) SHCMD("alacritty --class Alacritty,popterm " \ */
+/*   "--option window.dimensions.columns=120 " \ */
+/*   "--option window.dimensions.lines=10 " \ */
+/*   "--command " cmd) */
 
 /* appearance */
 static unsigned int borderpx  = 0;        /* border pixel of windows */
@@ -88,6 +89,7 @@ static const Rule rules[] = {
   { TERMCLASS,  NULL,       NULL,             0,            0,           1,         0,        -1 },
   { NULL,       NULL,       "Event Tester",   0,            0,           0,         1,        -1 },
   { TERMCLASS,  "popterm",  NULL,             0,            1,           1,         1,        -1 },
+  { "kitty",    "popterm",  NULL,             0,            1,           1,         1,        -1 },
   { TERMCLASS,  "spterm",   NULL,             SPTAG(0),     1,           1,         1,        -1 },
   { "kitty",    "spkitty",  NULL,             SPTAG(1),     1,           1,         1,        -1 },
 };
@@ -194,9 +196,9 @@ static Key keys[] = {
   {Mod(q),              killclient,      {0} },
   {ModSh(q),            spawn,           CMD("sysact") },
   {Mod(w),              spawn,           CMD(BROWSER) },
-  {ModSh(w),            spawn,           CMD(TERMINAL, "-e", "sudo", "nmtui") },
-  {Mod(e),              spawn,           SHCMD(TERMINAL " -e neomutt; rmdir ~/.abook") },
-  {ModSh(e),            spawn,           SHCMD(TERMINAL " -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook") },
+  /* {ModSh(w),            spawn,           CMD(TERMINAL, "-e", "sudo", "nmtui") }, */
+  /* {Mod(e),              spawn,           SHCMD(TERMINAL " -e neomutt; rmdir ~/.abook") }, */
+  /* {ModSh(e),            spawn,           SHCMD(TERMINAL " -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook") }, */
   {Mod(r),              spawn,           POPTERM("run")},
   {ModSh(r),            spawn,           POPTERM("run")},
   {Mod(t),              setlayout,       {.v = &layouts[0]} }, /* tile */
@@ -209,17 +211,17 @@ static Key keys[] = {
   {ModSh(i),            setlayout,       {.v = &layouts[7]} }, /* centeredfloatingmaster */
   {Mod(o),              incnmaster,      {.i = +1 } },
   {ModSh(o),            incnmaster,      {.i = -1 } },
-  {Mod(p),              spawn,           CMD("mpc", "toggle") },
-  {ModSh(p),            spawn,           SHCMD("mpc pause; pauseallmpv") },
-  {Mod(bracketleft),    spawn,           CMD("mpc", "seek", "-10") },
-  {ModSh(bracketleft),  spawn,           CMD("mpc", "seek", "-60") },
-  {Mod(bracketright),   spawn,           CMD("mpc", "seek", "+10") },
-  {ModSh(bracketright), spawn,           CMD("mpc", "seek", "+60") },
-  {Mod(backslash),      view,            {0} },
-  {ModSh(backslash),    spawn,           SHCMD("") },
+  /* {Mod(p),              spawn,           CMD("mpc", "toggle") }, */
+  /* {ModSh(p),            spawn,           SHCMD("mpc pause; pauseallmpv") }, */
+  /* {Mod(bracketleft),    spawn,           CMD("mpc", "seek", "-10") }, */
+  /* {ModSh(bracketleft),  spawn,           CMD("mpc", "seek", "-60") }, */
+  /* {Mod(bracketright),   spawn,           CMD("mpc", "seek", "+10") }, */
+  /* {ModSh(bracketright), spawn,           CMD("mpc", "seek", "+60") }, */
+  /* {Mod(backslash),      view,            {0} }, */
+  /* {ModSh(backslash),    spawn,           SHCMD("") }, */
   {Mod(a),              spawn,           CMD("kitty", "pulsemixer") },
-  /* {Mod(a),              togglegaps,      {0} }, */ // TODO: I don't want gaps!
-  {ModSh(a),            defaultgaps,     {0} },
+  /* {Mod(a),              defaultgaps,      {0} }, // TODO: I don't want gaps! */
+  {ModSh(a),            togglegaps,     {0} },
   {Mod(s),              swapfocus,    {0} },
   {ModSh(s),            togglesticky,    {0} },
   {Mod(d),              spawn,           CMD("dmenu_run") },
@@ -239,7 +241,7 @@ static Key keys[] = {
   {ModSh(Return),       togglescratch,   {.ui = 0} },
   {Mod(z),              incrgaps,        {.i = +3 } },
   {Mod(x),              incrgaps,        {.i = -3 } },
-  {Mod(c),              spawn,           CMD(TERMINAL, "-e", "profanity") },
+  /* {Mod(c),              spawn,           CMD(TERMINAL, "-e", "profanity") }, */
   {Mod(b),              togglebar,       {0} },
   /* {Mod(n),              spawn,           {.v = (const char*[]){ TERMINAL, "-e", "nvim", "-c", "VimwikiIndex", NULL } } }, */
   /* {ModSh(n),            spawn,           SHCMD(TERMINAL " -e newsboat") }, */

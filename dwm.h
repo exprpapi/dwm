@@ -282,13 +282,13 @@ static void (*handler[LASTEvent]) (XEvent *) = {
 	[ConfigureRequest] = configurerequest,
 	[ConfigureNotify] = configurenotify,
 	[DestroyNotify] = destroynotify,
-	[EnterNotify] = enternotify,
+	/* [EnterNotify] = enternotify, */ // patch focusonclick
 	[Expose] = expose,
 	[FocusIn] = focusin,
 	[KeyPress] = keypress,
 	[MappingNotify] = mappingnotify,
 	[MapRequest] = maprequest,
-	[MotionNotify] = motionnotify,
+	/* [MotionNotify] = motionnotify, */ // patch focusonclick
 	[PropertyNotify] = propertynotify,
 	[UnmapNotify] = unmapnotify
 };

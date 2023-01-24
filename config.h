@@ -29,7 +29,7 @@ static int smartgaps          = 0;        /* 1 means no outer gap when there is 
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 0;        /* 0 means bottom bar */
 static int focusonwheel       = 0;
-static char *fonts[]          = { "monospace:size=14", "NotoColorEmoji:pixelsize=14:antialias=true:autohint=true"  };
+static char *fonts[]          = { "Fira Sans Compressed:size=14", "NotoColorEmoji:pixelsize=14:antialias=true:autohint=true"  };
 static char normbgcolor[]     = "#222222";
 static char normbordercolor[] = "#444444";
 static char normfgcolor[]     = "#bbbbbb";
@@ -266,8 +266,8 @@ static Key keys[] = {
   {Mod(F7),             spawn,           CMD("dock")},
   {Mod(F11),            spawn,           SHCMD("webcam") },
   /* {Mod(space),          zoom,            {0} }, */
-  {Mod(space),          togglescratch,   {.ui = 1} },
-  {ModSh(space),        togglescratch,   {.ui = 0} },
+  {Mod(space),          togglescratch,   {.ui = 0} },
+  {ModSh(space),        togglescratch,   {.ui = 1} },
   /* {ModSh(space),        togglefloating,  {0} }, */
   {Mod(Print),          spawn,           CMD("dmenurecord") },
   {ModSh(Print),        spawn,           CMD("dmenurecord", "kill") },

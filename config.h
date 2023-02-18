@@ -266,8 +266,8 @@ static Key keys[] = {
   {Mod(F7),             spawn,           CMD("dock")},
   {Mod(F11),            spawn,           SHCMD("webcam") },
   /* {Mod(space),          zoom,            {0} }, */
-  {Mod(space),          togglescratch,   {.ui = 0} },
-  {ModSh(space),        togglescratch,   {.ui = 1} },
+  {Mod(space),          togglescratch,   {.ui = 1} },
+  {ModSh(space),        togglescratch,   {.ui = 0} },
   /* {ModSh(space),        togglefloating,  {0} }, */
   {Mod(Print),          spawn,           CMD("dmenurecord") },
   {ModSh(Print),        spawn,           CMD("dmenurecord", "kill") },

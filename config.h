@@ -9,9 +9,13 @@
 #define ModSh(K) (MODKEY|ShiftMask), XK_##K
 #define ModShCtrl(K) (MODKEY|ShiftMask|ControlMask), XK_##K
 /* #define POPTERM(cmd) SHCMD("st -n popterm -g 80x12 -e " cmd) */
-#define POPTERM(cmd) SHCMD("kitty --name popterm "\
-  "-o initial_window_width=150c "\
-  "-o initial_window_height=10c " cmd)
+#define POPTERM(cmd) SHCMD(\
+  "kitty --name popterm "\
+  "-o initial_window_width=150c " \
+  "-o initial_window_height=10c " \
+  "--detach "\
+  cmd \
+)
 /* #define POPTERM(cmd) SHCMD("alacritty --class Alacritty,popterm " \ */
 /*   "--option window.dimensions.columns=120 " \ */
 /*   "--option window.dimensions.lines=10 " \ */
@@ -180,7 +184,7 @@ static Key keys[] = {
   {ModShCtrl(k), moveresize, {.v = (int []){ 0, 0, 0, -25 }}},
   {Mod(Escape),         spawn,           SHCMD("slock") },
   {ModSh(Escape),       spawn,           SHCMD("systemctl suspend") },
-  {Mod(grave),          spawn,           CMD("dmenuunicode") },
+  {Mod(grave),          spawn,           POPTERM("emoji") },
   {ModSh(grave),        togglescratch,   SHCMD("") },
   {Mod(0),              view,            {.ui = ~0 } },
   {ModSh(0),            tag,             {.ui = ~0 } },

@@ -33,7 +33,7 @@ static int smartgaps          = 0;        /* 1 means no outer gap when there is 
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 0;        /* 0 means bottom bar */
 static int focusonwheel       = 0;
-static char *fonts[]          = { "Fira Sans Compressed:size=14", "NotoColorEmoji:pixelsize=14:antialias=true:autohint=true"  };
+static char *fonts[]          = { "Iosevka Nerd Font:size=14", "Fira Sans Compressed:size=14", "NotoColorEmoji:pixelsize=14:antialias=true:autohint=true"  };
 static char normbgcolor[]     = "#222222";
 static char normbordercolor[] = "#444444";
 static char normfgcolor[]     = "#bbbbbb";
@@ -204,7 +204,7 @@ static Key keys[] = {
   /* {Mod(e),              spawn,           SHCMD(TERMINAL " -e neomutt; rmdir ~/.abook") }, */
   /* {ModSh(e),            spawn,           SHCMD(TERMINAL " -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook") }, */
   {Mod(r),              spawn,           POPTERM("run")},
-  {ModSh(r),            spawn,           POPTERM("run")},
+  {ModSh(r),            spawn,           POPTERM("sudo systemctl disable --now udevmon && remaps")},
   {Mod(t),              setlayout,       {.v = &layouts[0]} }, /* tile */
   {ModSh(t),            setlayout,       {.v = &layouts[1]} }, /* bstack */
   {Mod(y),              setlayout,       {.v = &layouts[2]} }, /* spiral */

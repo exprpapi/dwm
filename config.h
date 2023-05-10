@@ -9,13 +9,33 @@
 #define ModSh(K) (MODKEY|ShiftMask), XK_##K
 #define ModShCtrl(K) (MODKEY|ShiftMask|ControlMask), XK_##K
 /* #define POPTERM(cmd) SHCMD("st -n popterm -g 80x12 -e " cmd) */
-#define POPTERM(cmd) SHCMD(\
-  "kitty --name popterm "\
-  "-o initial_window_width=150c " \
-  "-o initial_window_height=10c " \
-  "--detach "\
-  cmd \
-)
+
+#define POPTERM_ROWS 10
+#define POPTERM_COLS 150
+
+#define POPTERM_KITTY(cmd) \
+  SHCMD( \
+    "kitty " \
+    "--name popterm " \
+    "-o initial_window_width=150c " \
+    "-o initial_window_height=10c " \
+    "--detach "\
+    cmd \
+  )
+
+#define POPTERM_ALACRITTY(cmd) \
+  SHCMD( \
+    "alacritty " \
+    "--title popterm " \
+    "--class Alacritty,popterm " \
+    "--option window.dimensions.columns=150 " \
+    "--option window.dimensions.lines=10 " \
+    "--command " \
+    cmd \
+  )
+
+#define POPTERM(...) POPTERM_ALACRITTY(__VA_ARGS__)
+
 /* #define POPTERM(cmd) SHCMD("alacritty --class Alacritty,popterm " \ */
 /*   "--option window.dimensions.columns=120 " \ */
 /*   "--option window.dimensions.lines=10 " \ */

@@ -5,10 +5,10 @@
 #define STR_ARR(...) (const char*[]){ __VA_ARGS__, NULL}
 #define CMD(...) { .v = STR_ARR(__VA_ARGS__) }
 #define SHCMD(...) CMD("/usr/bin/zsh", "-c", __VA_ARGS__)
+
 #define Mod(K) MODKEY, XK_##K
 #define ModSh(K) (MODKEY|ShiftMask), XK_##K
 #define ModShCtrl(K) (MODKEY|ShiftMask|ControlMask), XK_##K
-/* #define POPTERM(cmd) SHCMD("st -n popterm -g 80x12 -e " cmd) */
 
 #define POPTERM_ROWS 10
 #define POPTERM_COLS 150
@@ -35,11 +35,6 @@
   )
 
 #define POPTERM(...) POPTERM_ALACRITTY(__VA_ARGS__)
-
-/* #define POPTERM(cmd) SHCMD("alacritty --class Alacritty,popterm " \ */
-/*   "--option window.dimensions.columns=120 " \ */
-/*   "--option window.dimensions.lines=10 " \ */
-/*   "--command " cmd) */
 
 /* appearance */
 static unsigned int borderpx  = 0;        /* border pixel of windows */
@@ -243,7 +238,7 @@ static Key keys[] = {
   /* {ModSh(bracketright), spawn,           CMD("mpc", "seek", "+60") }, */
   /* {Mod(backslash),      view,            {0} }, */
   /* {ModSh(backslash),    spawn,           SHCMD("") }, */
-  {Mod(a),              spawn,           CMD("kitty", "pulsemixer") },
+  {Mod(a),              spawn,           CMD("alacritty", "--command", "pulsemixer") },
   /* {Mod(a),              defaultgaps,      {0} }, // TODO: I don't want gaps! */
   {ModSh(a),            togglegaps,     {0} },
   {Mod(s),              swapfocus,    {0} },

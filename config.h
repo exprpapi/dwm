@@ -10,8 +10,8 @@
 #define ModSh(K) (MODKEY|ShiftMask), XK_##K
 #define ModShCtrl(K) (MODKEY|ShiftMask|ControlMask), XK_##K
 
-#define POPTERM_ROWS 10
-#define POPTERM_COLS 150
+#define POPTERM_ROWS "10"
+#define POPTERM_COLS "150"
 
 #define POPTERM_KITTY(cmd) \
   SHCMD( \

@@ -1,6 +1,5 @@
 #define TERMINAL "Alacritty"
 #define TERMCLASS "Alacritty"
-#define BROWSER "firefox"
 
 #define STR_ARR(...) (const char*[]){ __VA_ARGS__, NULL}
 #define CMD(...) { .v = STR_ARR(__VA_ARGS__) }
@@ -214,7 +213,7 @@ static Key keys[] = {
   {Mod(v),              spawn,           POPTERM("open") },
   {Mod(q),              killclient,      {0} },
   {ModSh(q),            spawn,           CMD("sysact") },
-  {Mod(w),              spawn,           CMD(BROWSER) },
+  {Mod(w),              spawn,           CMD("firefox") },
   /* {ModSh(w),            spawn,           CMD(TERMINAL, "-e", "sudo", "nmtui") }, */
   /* {Mod(e),              spawn,           SHCMD(TERMINAL " -e neomutt; rmdir ~/.abook") }, */
   /* {ModSh(e),            spawn,           SHCMD(TERMINAL " -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook") }, */
@@ -309,7 +308,7 @@ static Key keys[] = {
   {0,                   XF86XK_PowerOff,          spawn,           CMD("sysact") },
   {0,                   XF86XK_Calculator,        spawn,           CMD(TERMINAL, "-e", "bc", "-l") },
   {0,                   XF86XK_Sleep,             spawn,           CMD("sudo", "-A", "zzz") },
-  {0,                   XF86XK_WWW,               spawn,           CMD(BROWSER) },
+  {0,                   XF86XK_WWW,               spawn,           CMD("firefox") },
   {0,                   XF86XK_DOS,               spawn,           CMD("kitty") },
   {0,                   XF86XK_ScreenSaver,       spawn,           SHCMD("slock & xset dpms force off; mpc pause; pauseallmpv") },
   {0,                   XF86XK_TaskPane,          spawn,           CMD(TERMINAL, "-e", "htop") },

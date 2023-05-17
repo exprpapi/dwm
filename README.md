@@ -5,7 +5,8 @@
 ```bash
 $ git clone https://github.com/exprpapi/dwm
 $ cd dwm
-$ make install
+$ sudo make install
+$ pkill -HUP dwm
 ```
 
 ## Patches and features

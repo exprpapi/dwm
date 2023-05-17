@@ -2,11 +2,10 @@
 
 ## Installation
 
-```sh
-pacman -S libxft-bgra
-git clone https://github.com/LukeSmithxyz/dwm
-cd dwm
-make install
+```bash
+$ git clone https://github.com/exprpapi/dwm
+$ cd dwm
+$ make install
 ```
 
 ## Patches and features

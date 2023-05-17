@@ -1,4 +1,4 @@
-# dwm
+# `dwm`
 
 ## Installation
 

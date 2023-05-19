@@ -229,12 +229,6 @@ static Key keys[] = {
   {ModSh(i),            setlayout,       {.v = &layouts[7]} }, /* centeredfloatingmaster */
   {Mod(o),              incnmaster,      {.i = +1 } },
   {ModSh(o),            incnmaster,      {.i = -1 } },
-  /* {Mod(p),              spawn,           CMD("mpc", "toggle") }, */
-  /* {ModSh(p),            spawn,           SHCMD("mpc pause; pauseallmpv") }, */
-  /* {Mod(bracketleft),    spawn,           CMD("mpc", "seek", "-10") }, */
-  /* {ModSh(bracketleft),  spawn,           CMD("mpc", "seek", "-60") }, */
-  /* {Mod(bracketright),   spawn,           CMD("mpc", "seek", "+10") }, */
-  /* {ModSh(bracketright), spawn,           CMD("mpc", "seek", "+60") }, */
   /* {Mod(backslash),      view,            {0} }, */
   /* {ModSh(backslash),    spawn,           SHCMD("") }, */
   {Mod(a),              spawn,           CMD("alacritty", "--command", "pulsemixer") },
@@ -259,23 +253,8 @@ static Key keys[] = {
   {ModSh(Return),       togglescratch,   {.ui = 0} },
   {Mod(z),              incrgaps,        {.i = +3 } },
   {Mod(x),              incrgaps,        {.i = -3 } },
-  /* {Mod(c),              spawn,           CMD(TERMINAL, "-e", "profanity") }, */
   {Mod(b),              togglebar,       {0} },
-  /* {Mod(n),              spawn,           {.v = (const char*[]){ TERMINAL, "-e", "nvim", "-c", "VimwikiIndex", NULL } } }, */
-  /* {ModSh(n),            spawn,           SHCMD(TERMINAL " -e newsboat") }, */
-  {Mod(m),              spawn,           CMD(TERMINAL, "-e", "ncmpcpp") },
-  {ModSh(m),            spawn,           CMD("pamixer", "-t") },
-  {Mod(comma),          spawn,           CMD("mpc", "prev") },
-  {ModSh(comma),        spawn,           CMD("mpc", "seek", "0%") },
-  {Mod(period),         spawn,           CMD("mpc", "next") },
-  {ModSh(period),       spawn,           CMD("mpc", "repeat") },
-  {Mod(Left),           focusmon,        {.i = -1 } },
-  {ModSh(Left),         tagmon,          {.i = -1 } },
-  {Mod(Right),          focusmon,        {.i = +1 } },
-  {ModSh(Right),        tagmon,          {.i = +1 } },
-  /* {Mod(Insert),         spawn,           SHCMD("xdotool type $(grep -v '^#' ~/.local/share/larbs/snippets | dmenu -i -l 50 | cut -d' ' -f1)") }, */
-  {ModSh(F1),           spawn,           CMD("kitty", "pulsemixer")}, // SHCMD("groff -mom /usr/local/share/dwm/larbs.mom -Tpdf | zathura -") },
-  {Mod(F1),             spawn,           CMD("pamixer", "-t")}, // SHCMD("groff -mom /usr/local/share/dwm/larbs.mom -Tpdf | zathura -") },
+  {Mod(F1),             spawn,           CMD("pamixer", "-t")},
   {Mod(F2),             spawn,           CMD("pamixer", "-d", "3")},
   {Mod(F3),             spawn,           CMD("pamixer", "-i", "3")},
   {Mod(F4),             spawn,           SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
@@ -293,34 +272,6 @@ static Key keys[] = {
   {Mod(Scroll_Lock),    spawn,           SHCMD("killall screenkey || screenkey &") },
   {ShiftMask,           XK_Print,                 spawn,           CMD("maimpick") },
   {0,                   XK_Print,                 spawn,           SHCMD("screenshot f") },
-  {0,                   XF86XK_AudioMute,         spawn,           SHCMD("pamixer -t") },
-  {0,                   XF86XK_AudioRaiseVolume,  spawn,           SHCMD("pamixer --allow-boost -i 3") },
-  {0,                   XF86XK_AudioLowerVolume,  spawn,           SHCMD("pamixer --allow-boost -d 3") },
-  {0,                   XF86XK_AudioPrev,         spawn,           CMD("mpc", "prev") },
-  {0,                   XF86XK_AudioNext,         spawn,           CMD("mpc",  "next") },
-  {0,                   XF86XK_AudioPause,        spawn,           CMD("mpc", "pause") },
-  {0,                   XF86XK_AudioPlay,         spawn,           CMD("mpc", "play") },
-  {0,                   XF86XK_AudioStop,         spawn,           CMD("mpc", "stop") },
-  {0,                   XF86XK_AudioRewind,       spawn,           CMD("mpc", "seek", "-10") },
-  {0,                   XF86XK_AudioForward,      spawn,           CMD("mpc", "seek", "+10") },
-  {0,                   XF86XK_AudioMedia,        spawn,           CMD(TERMINAL, "-e", "ncmpcpp") },
-  {0,                   XF86XK_AudioMicMute,      spawn,           SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
-  {0,                   XF86XK_PowerOff,          spawn,           CMD("sysact") },
-  {0,                   XF86XK_Calculator,        spawn,           CMD(TERMINAL, "-e", "bc", "-l") },
-  {0,                   XF86XK_Sleep,             spawn,           CMD("sudo", "-A", "zzz") },
-  {0,                   XF86XK_WWW,               spawn,           CMD("firefox") },
-  {0,                   XF86XK_DOS,               spawn,           CMD("kitty") },
-  {0,                   XF86XK_ScreenSaver,       spawn,           SHCMD("slock & xset dpms force off; mpc pause; pauseallmpv") },
-  {0,                   XF86XK_TaskPane,          spawn,           CMD(TERMINAL, "-e", "htop") },
-  {0,                   XF86XK_Mail,              spawn,           SHCMD(TERMINAL " -e neomutt") },
-  {0,                   XF86XK_MyComputer,        spawn,           CMD(TERMINAL, "-e",  "lfub",  "/") },
-  {0,                   XF86XK_Battery,           spawn,           SHCMD("") },
-  {0,                   XF86XK_Launch1,           spawn,           CMD("xset", "dpms", "force", "off") },
-  {0,                   XF86XK_TouchpadToggle,    spawn,           SHCMD("(synclient | grep 'TouchpadOff.*1' && synclient TouchpadOff=0) || synclient TouchpadOff=1") },
-  {0,                   XF86XK_TouchpadOff,       spawn,           CMD("synclient", "TouchpadOff=1") },
-  {0,                   XF86XK_TouchpadOn,        spawn,           CMD("synclient", "TouchpadOff=0") },
-  {0,                   XF86XK_MonBrightnessUp,   spawn,           CMD("xbacklight", "-inc", "15") },
-  {0,                   XF86XK_MonBrightnessDown, spawn,           CMD("xbacklight", "-dec", "15") },
 
   // TODO: do not work:
   /* { MODKEY,           XK_F5,    xrdb,   {.v = NULL } }, */

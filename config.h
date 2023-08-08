@@ -196,7 +196,7 @@ static Key keys[] = {
   {ModShCtrl(l), moveresize, {.v = (int []){ 0, 0, 25, 0 }}},
   {ModShCtrl(j), moveresize, {.v = (int []){ 0, 0, 0, 25 }}},
   {ModShCtrl(k), moveresize, {.v = (int []){ 0, 0, 0, -25 }}},
-  {Mod(Escape),         spawn,           SHCMD("slock") },
+  {Mod(Escape),         spawn,           SHCMD("i3lock.sh") },
   {ModSh(Escape),       spawn,           SHCMD("systemctl suspend") },
   {Mod(grave),          spawn,           POPTERM("emoji") },
   {ModSh(grave),        togglescratch,   SHCMD("") },

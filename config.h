@@ -9,31 +9,7 @@
 #define ModSh(K) (MODKEY|ShiftMask), XK_##K
 #define ModShCtrl(K) (MODKEY|ShiftMask|ControlMask), XK_##K
 
-#define POPTERM_ROWS "10"
-#define POPTERM_COLS "150"
-
-#define POPTERM_KITTY(cmd) \
-  SHCMD( \
-    "kitty " \
-    "--name popterm " \
-    "-o initial_window_width=150c " \
-    "-o initial_window_height=10c " \
-    "--detach "\
-    cmd \
-  )
-
-#define POPTERM_ALACRITTY(cmd) \
-  SHCMD( \
-    "alacritty " \
-    "--title popterm " \
-    "--class Alacritty,popterm " \
-    "--option window.dimensions.columns=150 " \
-    "--option window.dimensions.lines=10 " \
-    "--command " \
-    cmd \
-  )
-
-#define POPTERM(...) POPTERM_ALACRITTY(__VA_ARGS__)
+#define DWM_SH "wm.sh"
 
 /* appearance */
 static unsigned int borderpx  = 0;        /* border pixel of windows */
@@ -65,10 +41,20 @@ typedef struct {
   const void *cmd;
 } Sp;
 
+#define POPTERM_ALACRITTY(cmd) \
+  SHCMD( \
+    "alacritty " \
+    "--title popterm " \
+    "--class Alacritty,popterm " \
+    "--option window.dimensions.columns=150 " \
+    "--option window.dimensions.lines=10 " \
+    "--command " \
+    cmd \
+  )
+
+#define POPTERM(...) POPTERM_ALACRITTY(__VA_ARGS__)
+
 static Sp scratchpads[] = {
-  /* name      cmd  */
-  /* {"spterm",  STR_ARR("st", "-n", "spterm", "-g", "120x34", "-e", "tmuxdd")}, */
-  /* {"spterm", STR_ARR("st", "-n", "spterm", "-g", "120x34", "-e", "tmuxdd")}, */
   {
     "spterm",
     STR_ARR(
@@ -80,16 +66,6 @@ static Sp scratchpads[] = {
       "--command", "tmuxdd"
     )
   },
-  {
-    "spkitty",
-    STR_ARR(
-      "kitty",
-      "--override", "initial_window_width=80c",
-      "--override", "initial_window_height=25c",
-      "--name", "spkitty",
-      "tmuxdd"
-    )
-  }
 };
 
 /* tagging */
@@ -101,15 +77,10 @@ static const Rule rules[] = {
    *  WM_NAME(STRING) = title
   */
   /* class    instance      title          tags mask    isfloating   isterminal  noswallow  monitor */
-  /* { "Gimp",     NULL,       NULL,             1 << 8,       0,           0,         0,        -1 }, */
-  /* { TERMCLASS,  "bg",       NULL,             1 << 7,       0,           1,         0,        -1 }, */
-  /* { TERMCLASS,  "popterm",  NULL,             0,            1,           1,         1,        -1 }, */
   { TERMCLASS,  NULL,       NULL,             0,            0,           1,         0,        -1 },
   { NULL,       NULL,       "Event Tester",   0,            0,           0,         1,        -1 },
   { TERMCLASS,  "popterm",  NULL,             0,            1,           1,         1,        -1 },
-  { "kitty",    "popterm",  NULL,             0,            1,           1,         1,        -1 },
   { TERMCLASS,  "spterm",   NULL,             SPTAG(0),     1,           1,         1,        -1 },
-  { "kitty",    "spkitty",  NULL,             SPTAG(1),     1,           1,         1,        -1 },
 };
 
 /* layout(s) */
@@ -196,8 +167,8 @@ static Key keys[] = {
   {ModShCtrl(l), moveresize, {.v = (int []){ 0, 0, 25, 0 }}},
   {ModShCtrl(j), moveresize, {.v = (int []){ 0, 0, 0, 25 }}},
   {ModShCtrl(k), moveresize, {.v = (int []){ 0, 0, 0, -25 }}},
-  {Mod(Escape),         spawn,           SHCMD("i3lock.sh") },
-  {ModSh(Escape),       spawn,           SHCMD("systemctl suspend") },
+  {Mod(Escape),         spawn,           SHCMD(DWM_SH " lock") },
+  {ModSh(Escape),       spawn,           SHCMD(DWM_SH " sleep") },
   {Mod(grave),          spawn,           POPTERM("emoji") },
   {ModSh(grave),        togglescratch,   SHCMD("") },
   {Mod(0),              view,            {.ui = ~0 } },
@@ -249,17 +220,17 @@ static Key keys[] = {
   {Mod(apostrophe),     togglescratch,   {.ui = 0} },
   {ModSh(apostrophe),   spawn,           SHCMD("st -e run") },
   {ModSh(apostrophe),   togglesmartgaps, {0} },
-  {Mod(Return),         spawn,           CMD("kitty") },
+  {Mod(Return),         spawn,           CMD("alacritty") },
   {ModSh(Return),       togglescratch,   {.ui = 0} },
   {Mod(z),              incrgaps,        {.i = +3 } },
   {Mod(x),              incrgaps,        {.i = -3 } },
   {Mod(b),              togglebar,       {0} },
-  {Mod(F1),             spawn,           CMD("pamixer", "-t")},
-  {Mod(F2),             spawn,           CMD("pamixer", "-d", "3")},
-  {Mod(F3),             spawn,           CMD("pamixer", "-i", "3")},
-  {Mod(F4),             spawn,           SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
-  {Mod(F5),             spawn,           CMD("backlight", "-dec", "10") },
-  {Mod(F6),             spawn,           CMD("backlight", "-inc", "10") },
+  {Mod(F1),             spawn,           SHCMD(DWM_SH " volume toggle")},
+  {Mod(F2),             spawn,           SHCMD(DWM_SH " volume dec")},
+  {Mod(F3),             spawn,           SHCMD(DWM_SH " volume inc")},
+  {Mod(F4),             spawn,           SHCMD(DWM_SH " mic toggle")},
+  {Mod(F5),             spawn,           SHCMD(DWM_SH " brightness dec 10") },
+  {Mod(F6),             spawn,           SHCMD(DWM_SH " brightness inc 10") },
   {Mod(F7),             spawn,           CMD("dock")},
   {Mod(F11),            spawn,           SHCMD("webcam") },
   /* {Mod(space),          zoom,            {0} }, */

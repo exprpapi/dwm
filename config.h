@@ -10,6 +10,7 @@
 #define ModShCtrl(K) (MODKEY|ShiftMask|ControlMask), XK_##K
 
 #define DWM_SH "wm.sh"
+#define DWM_CMD(...) SHCMD(DWM_SH " " __VA_ARGS__)
 
 /* appearance */
 static unsigned int borderpx  = 0;        /* border pixel of windows */
@@ -224,6 +225,8 @@ static Key keys[] = {
   {ModSh(Return),       togglescratch,   {.ui = 0} },
   {Mod(z),              incrgaps,        {.i = +3 } },
   {Mod(x),              incrgaps,        {.i = -3 } },
+  {ModSh(z),            spawn,           DWM_CMD("gpt_clip") },
+  {ModSh(x),            spawn,           DWM_CMD("gpt_clip chatty") },
   {Mod(b),              togglebar,       {0} },
   {Mod(F1),             spawn,           SHCMD(DWM_SH " volume toggle")},
   {Mod(F2),             spawn,           SHCMD(DWM_SH " volume dec")},
